@@ -1,4 +1,4 @@
-package com.example.admincollegeapp;
+package com.example.admincollegeapp.faculty;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admincollegeapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -100,7 +101,7 @@ public class AddFacultyActivity extends AppCompatActivity {
                 email=facultyEmail.getText().toString();
                 post=facultyPost.getText().toString();
                 specialization=facultySpecial.getText().toString();
-
+ //rithik
                 if(imageUri.equals(uri))
                     Toast.makeText(AddFacultyActivity.this, "Please select an Image", Toast.LENGTH_SHORT).show();
                 else if(name.isEmpty()){

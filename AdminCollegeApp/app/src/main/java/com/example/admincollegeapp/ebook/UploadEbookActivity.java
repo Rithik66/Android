@@ -1,4 +1,4 @@
-package com.example.admincollegeapp;
+package com.example.admincollegeapp.ebook;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.admincollegeapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -27,7 +28,6 @@ import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 
 public class UploadEbookActivity extends AppCompatActivity {
 

@@ -23,14 +23,17 @@
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.13119143239625167" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout-w936dp/activity_login.xml" value="0.153125" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_add_faculty.xml" value="0.31309904153354634" />
+        <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_delete_notice.xml" value="0.2384428223844282" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_notice_adapter.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_update_faculty.xml" value="0.18" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_update_teacher.xml" value="0.22" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_upload_ebook.xml" value="0.25" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_upload_image.xml" value="0.2" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/activity_upload_notice.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/faculty_item_layout.xml" value="0.22" />
+        <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/neewsfeed_items_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/AdminCollegeApp/app/src/main/res/layout/no_data_found.xml" value="0.22" />
       </map>
     </option>

@@ -1,4 +1,4 @@
-package com.example.admincollegeapp;
+package com.example.admincollegeapp.gallery;
 
 public class GalleryData {
     String fileName,date,time,url,category,key;

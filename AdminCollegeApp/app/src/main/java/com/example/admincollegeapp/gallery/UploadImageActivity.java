@@ -1,4 +1,4 @@
-package com.example.admincollegeapp;
+package com.example.admincollegeapp.gallery;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,11 +10,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.admincollegeapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -27,37 +30,44 @@ import com.google.firebase.storage.UploadTask;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UploadNoticeActivity extends AppCompatActivity {
+public class UploadImageActivity extends AppCompatActivity {
 
+    Spinner dropdown;
+    Button uploadImageBtn;
     CardView addImage;
-    ImageView noticeImage;
-    EditText noticeTitle;
-    Button uploadNotice;
+    ImageView uploadedImage;
 
+    String category;
     Uri imageUri;
-    String title;
-    String key;
+    String fileName;
 
     private DatabaseReference reference;
     private StorageReference storageReference;
     ProgressDialog pd;
-
-    NoticeData noticeData;
+    String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload_notice);
+        setContentView(R.layout.activity_upload_image);
 
-        storageReference = FirebaseStorage.getInstance().getReference();
-        reference =  FirebaseDatabase.getInstance().getReference().child("Notice");
-
-        pd = new ProgressDialog(this);
-
+        dropdown = findViewById(R.id.dropdown);
+        uploadedImage = findViewById(R.id.uploadedImage);
         addImage = findViewById(R.id.addImage);
-        noticeImage = findViewById(R.id.noticeImage);
-        noticeTitle = findViewById(R.id.noticeTitle);
-        uploadNotice = findViewById(R.id.uploadNotice);
+        uploadImageBtn = findViewById(R.id.uploadImageBtn);
+
+        String items[] = new String[]{"Select a Category","IGNITRON","PONGAL","ONAM"};
+        dropdown.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,items));
+
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                category = dropdown.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { /* Nothing Done */ }
+        });
 
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,22 +76,20 @@ public class UploadNoticeActivity extends AppCompatActivity {
             }
         });
 
-        uploadNotice.setOnClickListener(new View.OnClickListener() {
+        uploadImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                title = noticeTitle.getText().toString();
-                if(noticeTitle.getText().toString().isEmpty()) {
-                    noticeTitle.setError("Empty");
-                    noticeTitle.requestFocus();
-                } else if (imageUri==null){
-                    Toast.makeText(UploadNoticeActivity.this, "Upload an Image", Toast.LENGTH_SHORT).show();
-                } else {
+                if(imageUri== null){
+                    Toast.makeText(UploadImageActivity.this,"Please select a Image",Toast.LENGTH_SHORT).show();
+                }
+                else if(category.equals("Select a Category")){
+                    Toast.makeText(UploadImageActivity.this,"Please select a Category",Toast.LENGTH_SHORT).show();
+                }
+                else{
                     uploadImage();
                 }
             }
         });
-
     }
 
     private void uploadImage() {
@@ -90,51 +98,51 @@ public class UploadNoticeActivity extends AppCompatActivity {
         pd.setTitle("Uploading");
         pd.show();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh:mm:ss");
+        SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd-hhmmss");
         Date now = new Date();
-        String fileName = formatter.format(now);
+        fileName = formater.format(now);
+        storageReference = FirebaseStorage.getInstance().getReference("Gallery/"+category+"/").child(fileName);
 
-        storageReference = FirebaseStorage.getInstance().getReference().child("Notice").child(fileName);
         storageReference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                Toast.makeText(UploadNoticeActivity.this,"Image Uploaded SuccessFully",Toast.LENGTH_SHORT).show();
                 storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+                        reference = FirebaseDatabase.getInstance().getReference().child("Gallery").child(category);
 
                         Date now = new Date();
                         SimpleDateFormat sdfDate = new SimpleDateFormat("dd-MM-yyyy");
                         String date = sdfDate.format(now);
                         SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm:ss a");
                         String time = sdfTime.format(now);
-
                         key = reference.push().getKey();
-                        NoticeData noticeData = new NoticeData(title,uri.toString(),date,time,key);
-                        reference.child(key).setValue(noticeData).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        GalleryData galleryData = new GalleryData(fileName,date,time,uri.toString(),category,key);
+
+                        reference.child(key).setValue(galleryData).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
-                                Toast.makeText(UploadNoticeActivity.this,"Data saved",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UploadImageActivity.this,"Data Saved",Toast.LENGTH_SHORT).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(UploadNoticeActivity.this,"Data save failed",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UploadImageActivity.this,"Data save failed",Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 });
-                if(pd.isShowing()) pd.dismiss();
-                noticeImage.setImageURI(null);
+                uploadedImage.setImageURI(null);
                 imageUri=null;
-                noticeTitle.setText("");
+                Toast.makeText(UploadImageActivity.this,"Image Uploaded SuccessFully",Toast.LENGTH_SHORT).show();
+                if(pd.isShowing()) pd.dismiss();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(UploadNoticeActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(UploadImageActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
                 if(pd.isShowing()) pd.dismiss();
-
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -158,7 +166,7 @@ public class UploadNoticeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 100 && data!=null && data.getData()!=null){
             imageUri = data.getData();
-            noticeImage.setImageURI(imageUri);
+            uploadedImage.setImageURI(imageUri);
         }
     }
 }

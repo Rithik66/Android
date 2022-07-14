@@ -1,4 +1,4 @@
-package com.example.admincollegeapp;
+package com.example.admincollegeapp.faculty;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,13 +9,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.admincollegeapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -78,7 +76,6 @@ public class UpdateTeacher extends AppCompatActivity {
         facultyEmail.setText(email);
         facultyPost.setText(post);
         facultySpecial.setText(specialization);
-        avatarProfile.setImageURI(Uri.parse(profile));
 
         avatarProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +152,7 @@ public class UpdateTeacher extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void unused) {
                                 Toast.makeText(UpdateTeacher.this, "Data Updated", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(UpdateTeacher.this,UpdateFacultyActivity.class);
+                                Intent intent = new Intent(UpdateTeacher.this, UpdateFacultyActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
                             }

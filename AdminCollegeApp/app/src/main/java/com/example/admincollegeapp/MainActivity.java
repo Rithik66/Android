@@ -7,9 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.admincollegeapp.ebook.UploadEbookActivity;
+import com.example.admincollegeapp.faculty.UpdateFacultyActivity;
+import com.example.admincollegeapp.gallery.UploadImageActivity;
+import com.example.admincollegeapp.notice.DeleteNoticeActivity;
+import com.example.admincollegeapp.notice.UploadNoticeActivity;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView uploadNotice,uploadImage,uploadpdf,updateFaculty;
+    CardView uploadNotice,uploadImage,uploadpdf,updateFaculty,deleteNotice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         uploadpdf.setOnClickListener(this);
         updateFaculty = findViewById(R.id.updateFaculty);
         updateFaculty.setOnClickListener(this);
+        deleteNotice = findViewById(R.id.deleteNotice);
+        deleteNotice.setOnClickListener(this);
     }
 
     @Override
@@ -31,21 +39,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent;
         switch (v.getId()){
             case R.id.addNotice:
-                intent = new Intent(MainActivity.this,UploadNoticeActivity.class);
+                intent = new Intent(MainActivity.this, UploadNoticeActivity.class);
                 startActivity(intent);
                 break;
             case R.id.addGallery:
-                intent = new Intent(MainActivity.this,UploadImageActivity.class);
+                intent = new Intent(MainActivity.this, UploadImageActivity.class);
                 startActivity(intent);
                 break;
             case R.id.addEbook:
-                intent = new Intent(MainActivity.this,UploadEbookActivity.class);
+                intent = new Intent(MainActivity.this, UploadEbookActivity.class);
                 startActivity(intent);
                 break;
             case R.id.updateFaculty:
-                intent = new Intent(MainActivity.this,UpdateFacultyActivity.class);
+                intent = new Intent(MainActivity.this, UpdateFacultyActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.deleteNotice:
+                intent = new Intent(MainActivity.this, DeleteNoticeActivity.class);
+                startActivity(intent);
+                break;
+
         }
     }
 }
