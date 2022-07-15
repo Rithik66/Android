@@ -1,3 +1,9 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">College App</string>
+
+    <string name="robotoMonoLight" tools:ignore="ReferenceType">@font/robotoMonoLight</string>
+    <string name="robotoMonoRegular" tools:ignore="ReferenceType">@font/robotoMonoRegular</string>
+    <string name="robotoMonoBold" tools:ignore="ReferenceType">@font/robotoMonoBold</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
