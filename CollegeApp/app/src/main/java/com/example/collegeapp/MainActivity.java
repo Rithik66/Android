@@ -5,9 +5,13 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.collegeapp.navbar.AboutFragment;
 import com.example.collegeapp.navbar.FacultyFragment;
@@ -31,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
     ActionBarDrawerToggle toggle;
     NavigationView navigationView;
 
+
+    NetworkInfo networkInfo;
+    ConnectivityManager connectivityManager;
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(toggle.onOptionsItemSelected(item))
@@ -42,6 +50,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        connectivityManager = (ConnectivityManager) MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if(networkInfo.getType()== ConnectivityManager.TYPE_MOBILE || networkInfo.getType()== ConnectivityManager.TYPE_WIFI){
+            Toast.makeText(this,"Connections Online", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this,"Please check your Network Connection", Toast.LENGTH_SHORT).show();
+        }
 
         //BOTTOM NAVIGATION VIEW
 
