@@ -54,12 +54,6 @@ public class MainActivity extends AppCompatActivity {
         connectivityManager = (ConnectivityManager) MainActivity.this.getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfo = connectivityManager.getActiveNetworkInfo();
 
-        if(networkInfo.getType()== ConnectivityManager.TYPE_MOBILE || networkInfo.getType()== ConnectivityManager.TYPE_WIFI){
-            Toast.makeText(this,"Connections Online", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this,"Please check your Network Connection", Toast.LENGTH_SHORT).show();
-        }
 
         //BOTTOM NAVIGATION VIEW
 
