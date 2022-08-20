@@ -13,35 +13,47 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.admincollegeapp.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class UploadImageActivity extends AppCompatActivity {
 
     Spinner dropdown;
-    Button uploadImageBtn;
+    Button uploadImageBtn,addEventBtn;
     CardView addImage;
     ImageView uploadedImage;
+    EditText eventName;
+    TextView sampleTxt;
 
     String category;
     Uri imageUri;
     String fileName;
+    ArrayList<String> events;
+    ArrayAdapter<String> adapter;
 
-    private DatabaseReference reference;
+    private DatabaseReference reference,mapRef;
     private StorageReference storageReference;
     ProgressDialog pd;
     String key;
@@ -55,9 +67,34 @@ public class UploadImageActivity extends AppCompatActivity {
         uploadedImage = findViewById(R.id.uploadedImage);
         addImage = findViewById(R.id.addImage);
         uploadImageBtn = findViewById(R.id.uploadImageBtn);
+        eventName = findViewById(R.id.eventName);
+        sampleTxt = findViewById(R.id.sampleTxt);
+        addEventBtn = findViewById(R.id.addEventBtn);
+        mapRef = FirebaseDatabase.getInstance().getReference("Event");
 
-        String items[] = new String[]{"Select a Category","IGNITRON","PONGAL","ONAM"};
-        dropdown.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,items));
+        events = new ArrayList<>();
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,events);
+
+        addEventBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String value = eventName.getText().toString();
+                String key = mapRef.push().getKey();
+                if(value.equals("")) {
+                    Toast.makeText(UploadImageActivity.this, "Event name is Empty", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    mapRef.child(key).setValue(value);
+                    eventName.setText("");
+                    events.clear();
+                    adapter.notifyDataSetChanged();
+
+                    Toast.makeText(UploadImageActivity.this, "Event added", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        dropdown.setAdapter(adapter);
+        showData();
 
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -88,6 +125,22 @@ public class UploadImageActivity extends AppCompatActivity {
                 else{
                     uploadImage();
                 }
+            }
+        });
+    }
+
+    private void showData() {
+        mapRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                    events.add(dataSnapshot.getValue().toString());
+                }
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

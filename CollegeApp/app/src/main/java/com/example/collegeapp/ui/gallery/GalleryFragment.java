@@ -1,4 +1,4 @@
-package com.example.collegeapp.navbar;
+package com.example.collegeapp.ui.gallery;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,12 +9,12 @@ import androidx.fragment.app.Fragment;
 
 import com.example.collegeapp.R;
 
-public class NoticeFragment extends Fragment {
+public class GalleryFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notice, container, false);
+        return inflater.inflate(R.layout.fragment_gallery, container, false);
     }
 }

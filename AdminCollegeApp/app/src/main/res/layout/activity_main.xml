@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Update Notice"
+                    android:text="Upload Notice"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginTop="10dp"
@@ -82,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Update Gallery"
+                    android:text="Upload Gallery"
                     android:textStyle="bold"
                     android:padding="5dp"
                     android:layout_marginTop="10dp"

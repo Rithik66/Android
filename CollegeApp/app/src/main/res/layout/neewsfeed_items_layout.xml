@@ -18,38 +18,62 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src=""/>
+                android:src="@drawable/profilepic_5"
+                android:id="@+id/profilePic"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Admin College App"
-                android:layout_marginLeft="15dp"
-                android:textSize="18dp"
-                android:textColor="@color/black"/>
+                android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical">
-
-                <com.google.android.material.button.MaterialButton
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delete"
-                    android:textSize="13dp"
-                    android:id="@+id/deleteNoticeButton"
-                    android:layout_gravity="center"
-                    android:textColor="@color/red"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                    android:text="Admin College App"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date : "
+                        android:layout_marginLeft="15dp"
+                        android:textSize="14dp"
+                        android:textColor="@color/gray"/>
 
-        </com.google.android.material.card.MaterialCardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 jan 2022"
+                        android:textSize="14dp"
+                        android:textColor="@color/gray"
+                        android:id="@+id/postDate"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time : "
+                        android:layout_marginLeft="15dp"
+                        android:textSize="14dp"
+                        android:textColor="@color/gray"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12:00"
+                        android:textSize="14dp"
+                        android:textColor="@color/gray"
+                        android:id="@+id/postTime"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
 
         </LinearLayout>
 
@@ -57,17 +81,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sample"
-            android:id="@+id/deleteNoticeTitle"
+            android:id="@+id/noticeTitle"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="12dp"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
             android:layout_marginTop="10dp"
-            android:id="@+id/deleteNoticeImage"/>
+            android:id="@+id/noticeImage"/>
 
     </LinearLayout>
 

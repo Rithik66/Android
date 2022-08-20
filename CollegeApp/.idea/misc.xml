@@ -5,11 +5,14 @@
       <map>
         <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/drawable/ic_about_nav.xml" value="0.1" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/activity_main.xml" value="0.14871794871794872" />
+        <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/faculty_item_layout.xml" value="0.18" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/fragment_about.xml" value="0.1" />
+        <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/fragment_faculty.xml" value="0.22" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/fragment_home.xml" value="0.16" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/fragment_notice.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/header_nav_drawer.xml" value="0.1" />
-        <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/neewsfeed_items_layout.xml" value="0.19479166666666667" />
+        <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/neewsfeed_items_layout.xml" value="0.25" />
+        <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/layout/no_data_found.xml" value="0.19479166666666667" />
         <entry key="..\:/Users/surya/AndroidStudioProjects/CollegeApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>
